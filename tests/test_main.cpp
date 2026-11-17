@@ -3,7 +3,8 @@
 
 TEST_CASE("Sanity check", "[smoke]") { REQUIRE(1 + 1 == 2); }
 
-TEST_CASE("Floating point equality", "[smoke]") {
+TEST_CASE("Floating point equality", "[smoke]")
+{
     float a = 0.1f + 0.2f;
     REQUIRE(a == Catch::Approx(0.3f).epsilon(1e-5));
 }

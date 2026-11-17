@@ -14,9 +14,13 @@ Licence: [MIT](LICENSE) · [Contributing](CONTRIBUTING.md) · [Code of Conduct](
 .
 ├── .devcontainer/      # Dev container config (VSCode / Zed)
 ├── src/
-│   └── main.cpp        # Main entry point
+│   ├── main.cpp        # Main entry point
+│   └── math/           # Grouped by concept
+│       └── vector.*    # Vector class
 ├── tests/
-│   └── test_main.cpp   # Smoke tests
+│   ├── test_main.cpp   # Smoke tests
+│   └── math/           # Mirrors src/ layout
+│       └── test_vector.cpp
 └── CMakeLists.txt
 ```
 
@@ -146,9 +150,9 @@ Full docs: https://github.com/catchorg/Catch2/blob/devel/docs/tutorial.md
 1. Create `src/<concept>/yourfile.cpp` and optionally `src/<concept>/yourfile.h` (e.g. `src/math/`). Include it as `#include "<concept>/yourfile.h"`.
 2. Add it to `CMakeLists.txt`:
    ```cmake
-   target_sources(raytracer PRIVATE src/<concept>/yourfile.cpp)
+   target_sources(raytracer_core PRIVATE src/<concept>/yourfile.cpp)
    ```
 3. For tests, add a new `.cpp` under `tests/<concept>/` (mirroring `src/`) and add it similarly to the `tests` target:
    ```cmake
-   target_sources(tests PRIVATE tests/<concept>/test_yourfile.cpp src/<concept>/yourfile.cpp)
+   target_sources(tests PRIVATE tests/<concept>/test_yourfile.cpp)
    ```
