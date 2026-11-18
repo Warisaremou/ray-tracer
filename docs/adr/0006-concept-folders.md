@@ -23,7 +23,8 @@ has a folder of the same name.
 | `src/math/` | General maths that knows nothing about rendering | `Vector` |
 | `src/geometry/` | Things that exist in the 3D scene and are intersected | `Ray`, `Sphere` |
 | `src/colour/` | Colour values | `Colour` |
-| `src/render/` | What turns a scene into pixels | `Camera` |
+| `src/render/` | What turns a scene into pixels | `Camera`, `Image` |
+| `src/io/` | Reading and writing files | `ImageSaver`, `PngSaver` |
 
 Includes start from `src/`, as in ADR 0005: `#include "geometry/ray.h"`.
 Tests follow the concept folder: `tests/geometry/test_sphere.cpp`.
