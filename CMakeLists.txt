@@ -4,9 +4,18 @@ project(raytracer VERSION 0.1.0 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Lets editors (clangd) find the include paths, e.g. "math/vector.h".
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 # Core library: everything except main.cpp, shared by the executable and the tests.
 # Add new source files here, once.
-add_library(raytracer_core STATIC src/math/vector.cpp)
+add_library(raytracer_core STATIC
+            src/math/vector.cpp
+            src/geometry/ray.cpp
+            src/geometry/sphere.cpp
+            src/colour/colour.cpp
+            src/render/camera.cpp
+            src/render/trace.cpp)
 target_include_directories(raytracer_core PUBLIC src)
 
 # Main executable
@@ -24,7 +33,16 @@ FetchContent_MakeAvailable(Catch2)
 
 enable_testing()
 
-add_executable(tests tests/test_main.cpp tests/math/test_vector.cpp)
+add_executable(tests
+               tests/test_main.cpp
+               tests/test_helpers.cpp
+               tests/math/test_vector.cpp
+               tests/geometry/test_ray.cpp
+               tests/geometry/test_sphere.cpp
+               tests/colour/test_colour.cpp
+               tests/render/test_camera.cpp
+               tests/render/test_trace.cpp)
+target_include_directories(tests PRIVATE tests)
 target_link_libraries(tests PRIVATE raytracer_core Catch2::Catch2WithMain)
 
 include(CTest)

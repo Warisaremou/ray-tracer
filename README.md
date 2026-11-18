@@ -12,15 +12,16 @@ Licence: [MIT](LICENSE) · [Contributing](CONTRIBUTING.md) · [Code of Conduct](
 
 ```
 .
-├── .devcontainer/      # Dev container config (VSCode / Zed)
+├── .devcontainer/          # Dev container config (VSCode / Zed)
 ├── src/
-│   ├── main.cpp        # Main entry point
-│   └── math/           # Grouped by concept
-│       └── vector.*    # Vector class
+│   ├── main.cpp            # Main entry point
+│   ├── math/               # Vector
+│   ├── geometry/           # Ray, Sphere
+│   ├── colour/             # Colour
+│   └── render/             # Camera
 ├── tests/
-│   ├── test_main.cpp   # Smoke tests
-│   └── math/           # Mirrors src/ layout
-│       └── test_vector.cpp
+│   ├── test_main.cpp       # Smoke tests
+│   └── <concept>/          # Mirrors src/, e.g. tests/geometry/test_sphere.cpp
 └── CMakeLists.txt
 ```
 
@@ -147,12 +148,12 @@ Full docs: https://github.com/catchorg/Catch2/blob/devel/docs/tutorial.md
 
 ## Adding new source files
 
-1. Create `src/<concept>/yourfile.cpp` and optionally `src/<concept>/yourfile.h` (e.g. `src/math/`). Include it as `#include "<concept>/yourfile.h"`.
+1. Create `src/<concept>/<class>.h` and `src/<concept>/<class>.cpp` in the folder of its concept (e.g. `src/geometry/sphere.h`). Include it as `#include "<concept>/<class>.h"`.
 2. Add it to `CMakeLists.txt`:
    ```cmake
-   target_sources(raytracer_core PRIVATE src/<concept>/yourfile.cpp)
+   target_sources(raytracer_core PRIVATE src/<concept>/<class>.cpp)
    ```
-3. For tests, add a new `.cpp` under `tests/<concept>/` (mirroring `src/`) and add it similarly to the `tests` target:
+3. For tests, add a new `.cpp` under `tests/<concept>/` (same concept folder as the class) and add it similarly to the `tests` target:
    ```cmake
-   target_sources(tests PRIVATE tests/<concept>/test_yourfile.cpp)
+   target_sources(tests PRIVATE tests/<concept>/test_<class>.cpp)
    ```

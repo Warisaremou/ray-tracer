@@ -37,7 +37,7 @@ See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for community standards.
 
 Our architecture decisions live in `docs/adr/`. Read them before changing the build system, tooling, or test setup.
 
-New classes go in the folder of their concept under `src/`, and their tests in the matching folder under `tests/` (see [ADR 0005](docs/adr/0005-source-layout-by-concept.md)).
+New classes go in the folder of their concept under `src/` (`math/`, `geometry/`, `colour/`, `render/`), with the header and cpp side by side, for example `src/geometry/sphere.h`. Their tests go in the matching folder under `tests/`, for example `tests/geometry/test_sphere.cpp` (see [ADR 0005](docs/adr/0005-source-layout-by-concept.md) and [ADR 0006](docs/adr/0006-concept-folders.md)).
 
 ## Code style
 
