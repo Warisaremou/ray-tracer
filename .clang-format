@@ -1,3 +1,38 @@
 BasedOnStyle: LLVM
+
+# Identation
 IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+
+# Line length
 ColumnLimit: 100
+
+# Braces and layout
+BreakBeforeBraces: Allman
+BraceWrapping:
+  AfterClass: true
+  AfterFunction: true
+  AfterNamespace: true
+  AfterStruct: true
+  BeforeCatch: true
+  BeforeElse: true
+
+# Includes
+SortIncludes: true
+IncludeBlocks: Regroup
+
+# Pointers and references
+PointerAlignment: Left
+DerivePointerAlignment: false
+
+# C++ Specific
+Standard: Cpp11
+Cpp11BracedListStyle: true
+
+# Comments
+ReflowComments: true
+
+# Misc
+MaxEmptyLinesToKeep: 1
+NamespaceIndentation: None
