@@ -43,6 +43,7 @@ New classes go in the folder of their concept under `src/` (`math/`, `geometry/`
 
 - All private member variables must be prefixed with an underscore (e.g. `_x`, not `x`). Constructor parameters and public names stay unprefixed.
 - Do not use a `get` prefix on accessors, it is redundant. Name the accessor after the property (e.g. `x()`, not `getX()`).
+- Accessors return by value, not by reference: a reference can dangle when it comes from a temporary (e.g. `camera.rayThroughCentre().origin()`).
 
 ## How we work
 

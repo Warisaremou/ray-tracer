@@ -14,9 +14,7 @@ class Sphere
   public:
     Sphere(const Vector& centre, double radius, const Colour& colour);
 
-    const Vector& centre() const;
-    double radius() const;
-    const Colour& colour() const;
+    Colour colour() const;
 
     bool isHitBy(const Ray& ray) const;
 };

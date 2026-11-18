@@ -1,15 +1,18 @@
 #include "sphere.h"
 
 #include <cmath>
+#include <stdexcept>
 
 Sphere::Sphere(const Vector& centre, double radius, const Colour& colour)
     : _centre(centre), _radius(radius), _colour(colour)
 {
+    if (radius <= 0.0)
+    {
+        throw std::domain_error("A sphere needs a positive radius");
+    }
 }
 
-const Vector& Sphere::centre() const { return _centre; }
-double Sphere::radius() const { return _radius; }
-const Colour& Sphere::colour() const { return _colour; }
+Colour Sphere::colour() const { return _colour; }
 
 bool Sphere::isHitBy(const Ray& ray) const
 {

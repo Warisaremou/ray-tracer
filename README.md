@@ -18,7 +18,7 @@ Licence: [MIT](LICENSE) · [Contributing](CONTRIBUTING.md) · [Code of Conduct](
 │   ├── math/               # Vector
 │   ├── geometry/           # Ray, Sphere
 │   ├── colour/             # Colour
-│   └── render/             # Camera
+│   └── render/             # Camera, trace()
 ├── tests/
 │   ├── test_main.cpp       # Smoke tests
 │   └── <concept>/          # Mirrors src/, e.g. tests/geometry/test_sphere.cpp
