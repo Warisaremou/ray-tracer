@@ -37,12 +37,13 @@ See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for community standards.
 
 Our architecture decisions live in `docs/adr/`. Read them before changing the build system, tooling, or test setup.
 
-New classes go in the folder of their concept under `src/`, and their tests in the matching folder under `tests/` (see [ADR 0005](docs/adr/0005-source-layout-by-concept.md)).
+New classes go in the folder of their concept under `src/` (`math/`, `geometry/`, `colour/`, `render/`), with the header and cpp side by side, for example `src/geometry/sphere.h`. Their tests go in the matching folder under `tests/`, for example `tests/geometry/test_sphere.cpp` (see [ADR 0005](docs/adr/0005-source-layout-by-concept.md) and [ADR 0006](docs/adr/0006-concept-folders.md)).
 
 ## Code style
 
 - All private member variables must be prefixed with an underscore (e.g. `_x`, not `x`). Constructor parameters and public names stay unprefixed.
 - Do not use a `get` prefix on accessors, it is redundant. Name the accessor after the property (e.g. `x()`, not `getX()`).
+- Accessors return by value, not by reference: a reference can dangle when it comes from a temporary (e.g. `camera.rayThroughCentre().origin()`).
 
 ## How we work
 
