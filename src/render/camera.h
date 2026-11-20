@@ -17,8 +17,9 @@ class Camera
 
     Ray rayThroughCentre() const;
 
-    Ray rayThroughPixel(unsigned int x, unsigned int y, unsigned int imageWidth,
+    Ray rayThroughPixel(unsigned int column, unsigned int row, unsigned int imageWidth,
                         unsigned int imageHeight) const;
 
-    Image render(const Sphere& sphere, unsigned int imageWidth, unsigned int imageHeight) const;
+    Image render(const Sphere& sphere, const Vector& toLight, unsigned int imageWidth,
+                 unsigned int imageHeight) const;
 };

@@ -1,5 +1,7 @@
 #include "test_helpers.h"
 
+#include "material/lambert_shader.h"
+
 #include <catch2/catch_approx.hpp>
 #include <sstream>
 
@@ -47,3 +49,8 @@ ColourApproxEqualsMatcher ApproxEquals(const Colour& expected)
 }
 
 Ray cameraRay() { return Ray(Vector(0, 0, -1), Vector(0, 0, 1)); }
+
+std::shared_ptr<const Material> redMaterial()
+{
+    return std::make_shared<LambertShader>(Colour(1, 0, 0));
+}

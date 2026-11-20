@@ -16,3 +16,12 @@ TEST_CASE("Ray refuses a zero direction", "[ray]")
 {
     REQUIRE_THROWS_AS(Ray(Vector(1, 2, 3), Vector(0, 0, 0)), std::domain_error);
 }
+
+TEST_CASE("Ray gives the point at distance t along it", "[ray]")
+{
+    Ray ray(Vector(1, 2, 3), Vector(0, 2, 1));
+
+    REQUIRE_THAT(ray.at(0), ApproxEquals(Vector(1, 2, 3)));
+    REQUIRE_THAT(ray.at(2), ApproxEquals(Vector(1, 6, 5)));
+    REQUIRE_THAT(ray.at(-1), ApproxEquals(Vector(1, 0, 2)));
+}

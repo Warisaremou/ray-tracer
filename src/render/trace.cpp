@@ -1,10 +1,13 @@
-#include "trace.h"
+#include "render/trace.h"
 
-Colour trace(const Ray& ray, const Sphere& sphere)
+#include <optional>
+
+Colour trace(const Ray& ray, const Sphere& sphere, const Vector& toLight)
 {
-    if (sphere.isHitBy(ray))
+    std::optional<Hit> hit = sphere.hit(ray);
+    if (hit.has_value())
     {
-        return sphere.colour();
+        return hit->material->shade(hit->normal, toLight);
     }
 
     return Colour(0, 0, 0);

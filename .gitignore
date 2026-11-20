@@ -1,5 +1,5 @@
 build/
-output.png
+image.png
 .cache/
 compile_commands.json
 .DS_Store

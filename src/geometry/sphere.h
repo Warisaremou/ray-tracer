@@ -1,20 +1,23 @@
 #pragma once
 
-#include "colour/colour.h"
+#include "geometry/hit.h"
 #include "geometry/ray.h"
+#include "geometry/shape.h"
+#include "material/material.h"
 #include "math/vector.h"
 
-class Sphere
+#include <memory>
+#include <optional>
+
+class Sphere : public Shape
 {
   private:
     Vector _centre;
     double _radius;
-    Colour _colour;
+    std::shared_ptr<const Material> _material;
 
   public:
-    Sphere(const Vector& centre, double radius, const Colour& colour);
+    Sphere(const Vector& centre, double radius, std::shared_ptr<const Material> material);
 
-    Colour colour() const;
-
-    bool isHitBy(const Ray& ray) const;
+    std::optional<Hit> hit(const Ray& ray) const override;
 };

@@ -9,28 +9,29 @@ Camera::Camera(const Vector& eye, const Vector& screenCentre, double screenWidth
 
 Ray Camera::rayThroughCentre() const { return Ray(_eye, _screenCentre - _eye); }
 
-Ray Camera::rayThroughPixel(unsigned int x, unsigned int y, unsigned int imageWidth,
+Ray Camera::rayThroughPixel(unsigned int column, unsigned int row, unsigned int imageWidth,
                             unsigned int imageHeight) const
 {
     double screenHeight = _screenWidth * imageHeight / imageWidth;
 
-    double offsetX = ((x + 0.5) / imageWidth - 0.5) * _screenWidth;
-    double offsetY = (0.5 - (y + 0.5) / imageHeight) * screenHeight;
+    double offsetX = ((column + 0.5) / imageWidth - 0.5) * _screenWidth;
+    double offsetY = (0.5 - (row + 0.5) / imageHeight) * screenHeight;
 
     Vector pixelCentre = _screenCentre + Vector(offsetX, offsetY, 0);
     return Ray(_eye, pixelCentre - _eye);
 }
 
-Image Camera::render(const Sphere& sphere, unsigned int imageWidth, unsigned int imageHeight) const
+Image Camera::render(const Sphere& sphere, const Vector& toLight, unsigned int imageWidth,
+                     unsigned int imageHeight) const
 {
     Image image(imageWidth, imageHeight);
 
-    for (unsigned int y = 0; y < imageHeight; y++)
+    for (unsigned int row = 0; row < imageHeight; row++)
     {
-        for (unsigned int x = 0; x < imageWidth; x++)
+        for (unsigned int column = 0; column < imageWidth; column++)
         {
-            Ray ray = rayThroughPixel(x, y, imageWidth, imageHeight);
-            image.setPixel(x, y, trace(ray, sphere));
+            Ray ray = rayThroughPixel(column, row, imageWidth, imageHeight);
+            image.setPixel(column, row, trace(ray, sphere, toLight));
         }
     }
 

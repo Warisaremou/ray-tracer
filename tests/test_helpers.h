@@ -2,9 +2,11 @@
 
 #include "colour/colour.h"
 #include "geometry/ray.h"
+#include "material/material.h"
 #include "math/vector.h"
 
 #include <catch2/matchers/catch_matchers.hpp>
+#include <memory>
 #include <string>
 
 // Absolute tolerance of the comparisons below. Without it, Catch::Approx(0) only matches exactly
@@ -42,6 +44,9 @@ class ColourApproxEqualsMatcher : public Catch::Matchers::MatcherBase<Colour>
 };
 
 ColourApproxEqualsMatcher ApproxEquals(const Colour& expected);
+
+// A red Lambert material.
+std::shared_ptr<const Material> redMaterial();
 
 // The ray of our camera in the first scene: origin (0, 0, -1), direction (0, 0, 1).
 Ray cameraRay();

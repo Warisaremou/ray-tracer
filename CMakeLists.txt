@@ -12,8 +12,12 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 add_library(raytracer_core STATIC
             src/math/vector.cpp
             src/geometry/ray.cpp
+            src/geometry/plane.cpp
             src/geometry/sphere.cpp
             src/colour/colour.cpp
+            src/light/light.cpp
+            src/material/flat_shader.cpp
+            src/material/lambert_shader.cpp
             src/render/camera.cpp
             src/render/trace.cpp
             src/render/image.cpp
@@ -55,8 +59,12 @@ add_executable(tests
                tests/test_helpers.cpp
                tests/math/test_vector.cpp
                tests/geometry/test_ray.cpp
+               tests/geometry/test_plane.cpp
                tests/geometry/test_sphere.cpp
                tests/colour/test_colour.cpp
+               tests/light/test_light.cpp
+               tests/material/test_flat_shader.cpp
+               tests/material/test_lambert_shader.cpp
                tests/render/test_camera.cpp
                tests/render/test_trace.cpp
                tests/render/test_image.cpp)
