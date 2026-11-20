@@ -14,3 +14,5 @@ class Colour
     double g() const;
     double b() const;
 };
+
+Colour operator*(double t, const Colour& c);

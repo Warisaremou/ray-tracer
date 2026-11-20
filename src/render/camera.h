@@ -1,7 +1,7 @@
 #pragma once
 
 #include "geometry/ray.h"
-#include "geometry/sphere.h"
+#include "scene/scene.h"
 #include "math/vector.h"
 #include "render/image.h"
 
@@ -17,8 +17,8 @@ class Camera
 
     Ray rayThroughCentre() const;
 
-    Ray rayThroughPixel(unsigned int x, unsigned int y, unsigned int imageWidth,
+    Ray rayThroughPixel(unsigned int column, unsigned int row, unsigned int imageWidth,
                         unsigned int imageHeight) const;
 
-    Image render(const Sphere& sphere, unsigned int imageWidth, unsigned int imageHeight) const;
+    Image render(const Scene& scene, unsigned int imageWidth, unsigned int imageHeight) const;
 };
