@@ -18,6 +18,7 @@ add_library(raytracer_core STATIC
             src/light/light.cpp
             src/material/flat_shader.cpp
             src/material/lambert_shader.cpp
+            src/scene/scene.cpp
             src/render/camera.cpp
             src/render/trace.cpp
             src/render/image.cpp
@@ -65,6 +66,7 @@ add_executable(tests
                tests/light/test_light.cpp
                tests/material/test_flat_shader.cpp
                tests/material/test_lambert_shader.cpp
+               tests/scene/test_scene.cpp
                tests/render/test_camera.cpp
                tests/render/test_trace.cpp
                tests/render/test_image.cpp)

@@ -26,6 +26,7 @@ has a folder of the same name.
 | `src/render/` | What turns a scene into pixels | `Camera`, `Image` |
 | `src/light/` | Light sources in the scene | `Light` |
 | `src/material/` | How a surface is shaded | `Material`, `FlatShader`, `LambertShader` |
+| `src/scene/` | The world a ray travels through: its shapes and the sun | `Scene` |
 | `src/io/` | Reading and writing files | `ImageSaver`, `PngSaver` |
 
 Includes start from `src/`, as in ADR 0005: `#include "geometry/ray.h"`.
