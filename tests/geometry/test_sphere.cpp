@@ -128,6 +128,21 @@ TEST_CASE("Sphere gives the far hit for a ray starting inside it", "[sphere]")
     REQUIRE_THAT(hit->normal, ApproxEquals(Vector(0, 0, 1)));
 }
 
+TEST_CASE("Sphere gives the far hit for a ray starting inside it, away from the centre", "[sphere]")
+{
+    Sphere sphere(Vector(0, 0, 1), 5, redMaterial());
+
+    // The sphere is around the eye. L = (0, 0, -2), a = 1, b = -4, c = 4 - 25 = -21,
+    // discriminant = 16 + 84 = 100, so t = (4 - 10) / 2 = -3 (behind) or (4 + 10) / 2 = 7 (ahead).
+    // The hit point is (0, 0, -1) + 7 (0, 0, 1) = (0, 0, 6) and the normal is (0, 0, 5) / 5.
+    std::optional<Hit> hit = sphere.hit(cameraRay());
+
+    REQUIRE(hit.has_value());
+    REQUIRE(hit->t == Catch::Approx(7).margin(tolerance));
+    REQUIRE_THAT(hit->point, ApproxEquals(Vector(0, 0, 6)));
+    REQUIRE_THAT(hit->normal, ApproxEquals(Vector(0, 0, 1)));
+}
+
 TEST_CASE("Sphere gives its own material in the hit information", "[sphere]")
 {
     std::shared_ptr<const Material> material = redMaterial();

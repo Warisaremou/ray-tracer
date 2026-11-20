@@ -19,7 +19,7 @@ int main()
 
     Camera camera(Vector(0, 0, -1), Vector(0, 0, 0), 2.0);
     // The sun shines from above, from the left and from behind the camera.
-    Scene scene(Vector(-1, 1, -1).normalised());
+    Scene scene(Vector(-1, 1, -1));
     scene.add(std::make_unique<Sphere>(
         Vector(0, 0, 9), 3.0, std::make_shared<LambertShader>(Colour(0.0, 0.0, 0.5))));
     scene.add(std::make_unique<Plane>(

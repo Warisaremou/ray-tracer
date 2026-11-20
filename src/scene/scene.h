@@ -16,6 +16,7 @@ class Scene
     std::vector<std::unique_ptr<Shape>> _shapes;
 
   public:
+    // toLight does not need to have length 1: the scene keeps it normalised.
     explicit Scene(const Vector& toLight);
 
     Vector toLight() const;

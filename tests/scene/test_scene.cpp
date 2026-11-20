@@ -28,6 +28,14 @@ TEST_CASE("Scene gives back its direction to the sun", "[scene]")
     REQUIRE_THAT(scene.toLight(), ApproxEquals(Vector(0, 0, -1)));
 }
 
+TEST_CASE("Scene normalises its direction to the sun", "[scene]")
+{
+    Scene scene(Vector(0, 3, -4));
+
+    // The length is 5, so the unit vector is (0, 3, -4) / 5.
+    REQUIRE_THAT(scene.toLight(), ApproxEquals(Vector(0, 0.6, -0.8)));
+}
+
 TEST_CASE("Scene gives the hit of a nearer shape added after a farther one", "[scene]")
 {
     Scene scene(Vector(0, 0, -1));
