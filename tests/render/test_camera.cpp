@@ -1,8 +1,11 @@
+#include "geometry/sphere.h"
 #include "render/camera.h"
+#include "scene/scene.h"
 #include "test_helpers.h"
 
 #include <catch2/catch_approx.hpp>
 #include <catch2/catch_test_macros.hpp>
+#include <memory>
 #include <stdexcept>
 
 TEST_CASE("Camera looking along z gives a ray along z", "[camera]")
@@ -82,9 +85,10 @@ TEST_CASE("Camera scales the pixel size to the screen and the image size", "[cam
 TEST_CASE("Camera renders the pixels that hit the sphere and leaves the others black", "[camera]")
 {
     Camera camera(Vector(0, 0, -1), Vector(0, 0, 0), 2);
-    Sphere sphere(Vector(0, 0, 9), 1, redMaterial());
+    Scene scene(Vector(0, 0, -1));
+    scene.add(std::make_unique<Sphere>(Vector(0, 0, 9), 1, redMaterial()));
 
-    Image image = camera.render(sphere, Vector(0, 0, -1), 3, 3);
+    Image image = camera.render(scene, 3, 3);
 
     REQUIRE(image.width() == 3);
     REQUIRE(image.height() == 3);

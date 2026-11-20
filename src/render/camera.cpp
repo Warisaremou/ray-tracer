@@ -21,8 +21,7 @@ Ray Camera::rayThroughPixel(unsigned int column, unsigned int row, unsigned int 
     return Ray(_eye, pixelCentre - _eye);
 }
 
-Image Camera::render(const Sphere& sphere, const Vector& toLight, unsigned int imageWidth,
-                     unsigned int imageHeight) const
+Image Camera::render(const Scene& scene, unsigned int imageWidth, unsigned int imageHeight) const
 {
     Image image(imageWidth, imageHeight);
 
@@ -31,7 +30,7 @@ Image Camera::render(const Sphere& sphere, const Vector& toLight, unsigned int i
         for (unsigned int column = 0; column < imageWidth; column++)
         {
             Ray ray = rayThroughPixel(column, row, imageWidth, imageHeight);
-            image.setPixel(column, row, trace(ray, sphere, toLight));
+            image.setPixel(column, row, trace(ray, scene));
         }
     }
 

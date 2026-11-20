@@ -2,12 +2,12 @@
 
 #include <optional>
 
-Colour trace(const Ray& ray, const Sphere& sphere, const Vector& toLight)
+Colour trace(const Ray& ray, const Scene& scene)
 {
-    std::optional<Hit> hit = sphere.hit(ray);
+    std::optional<Hit> hit = scene.nearestHit(ray);
     if (hit.has_value())
     {
-        return hit->material->shade(hit->normal, toLight);
+        return hit->material->shade(hit->normal, scene.toLight());
     }
 
     return Colour(0, 0, 0);
